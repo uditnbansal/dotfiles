@@ -1,3 +1,4 @@
+*.swp
 shell/custom.sh
 vim/plugged
 vim/viminfo
