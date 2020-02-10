@@ -1,0 +1,36 @@
+[color]
+  ui = true
+[core]
+  editor = vim
+  pager = less -F -X
+[alias]
+  a = add
+  b = branch
+  bi = bisect
+  bl = blame
+  bn = rev-parse --abbrev-ref HEAD
+  c = checkout
+  ch = checkout
+  cm = checkout master
+  co = commit
+  ctag = describe --tags --abbrev=0
+  d = diff
+  dn = diff --name-only
+  l = log --oneline
+  ln = log --oneline -n
+  lo = log
+  pg = push origin HEAD:refs/for/master
+  pl = pull
+  ph = push
+  reb = rebase
+  rebm = rebase master
+  res = reset
+  s = show --stat
+  sh = show
+  sn = show --pretty="format:" --name-only
+  st = status
+[user]
+  name = Udit Bansal
+  email = uditnbansal@gmail.com
+[push]
+  default = simple

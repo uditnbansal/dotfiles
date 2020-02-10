@@ -1,0 +1,244 @@
+call plug#begin('~/.vim/plugged')
+Plug 'Chiel92/vim-autoformat'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'Konfekt/FastFold'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'SirVer/ultisnips'
+Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+Plug 'godlygeek/tabular'
+Plug 'henrik/vim-indexed-search'
+Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vim'
+Plug 'mattn/emmet-vim'
+Plug 'mtth/scratch.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'rking/ag.vim'
+Plug 'tell-k/vim-autopep8'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vimwiki/vimwiki'
+Plug 'ycm-core/YouCompleteMe'
+call plug#end()
+
+filetype plugin indent on
+syntax enable
+
+" set t_ti= t_te=  \" Don't clear screen when vim quits
+set autochdir " Change to the directory of the current file
+set background=dark
+set backspace=indent,eol,start
+set cursorline
+set encoding=utf-8
+set expandtab
+set fdm=syntax
+set fillchars=""
+set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set modeline
+set mouse=a
+set noequalalways  " Don't resize all panes when opening new panes etc
+set nowrap
+set number
+set scrolloff=3
+set shiftwidth=4
+set smartcase
+set softtabstop=2
+set splitbelow  " Open splits right and below rather than the default setting
+set splitright
+set t_Co=256
+set t_ZH=[3m  " Correctly display italics
+set t_ZR=[23m  " Correctly display italics
+set t_ut=  " This corrects the incorrect background colors while using inside tmux
+set tabpagemax=25
+set tabstop=2
+set tags+=$WORK/tags
+set viminfo+=n/tmp/viminfo
+set visualbell
+set wildmenu
+
+" User defined shortcuts
+let mapleader = ","
+
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap jj <Esc>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <Leader>/ /\<\><Left><Left>
+nnoremap <Leader><Tab> :Scratch<CR>
+nnoremap <Leader>` :e $VIMRC<CR>
+nnoremap <Leader>aa :AgAdd<Space>
+nnoremap <Leader>ab :AgBuffer<Space>
+nnoremap <Leader>ag :Ag
+nnoremap <Leader>b<Space> :sp<CR>
+nnoremap <Leader>bb :b#<CR>
+nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>bf :bfirst<CR>
+nnoremap <Leader>bg :CtrlPBuffer<CR>
+nnoremap <Leader>bl :blast<CR>
+nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>bp :bp<CR>
+nnoremap <Leader>bs :buffers<CR>
+nnoremap <Leader>cw :echo getcwd()<CR>
+nnoremap <Leader>dg :diffget<CR>
+nnoremap <Leader>e :e<Space>
+nnoremap <Leader>fa :Autoformat<CR>
+nnoremap <Leader>fc :%!clang-format -style=file<CR>
+nnoremap <Leader>fj :%!python -m json.tool<CR>
+nnoremap <Leader>fp ::call Autopep8()<CR>
+nnoremap <Leader>ga :Git add %:p<CR><CR>
+nnoremap <Leader>gbb :Git b<CR>
+nnoremap <Leader>gbl :Gblame -w<CR>
+nnoremap <Leader>gc :Git c<Space>
+nnoremap <Leader>gca :Gcommit --amend<CR>
+nnoremap <Leader>gcm :Git cm<CR>
+nnoremap <Leader>gco :Gcommit<CR>
+nnoremap <Leader>gdd :Gvdiff HEAD<CR>
+nnoremap <Leader>gdn :Git dn<CR>
+nnoremap <Leader>gdp :Gvdiff HEAD~1<CR>
+nnoremap <Leader>gll :Git log --oneline -n 10<CR>
+nnoremap <Leader>glo :Git log -n 5<CR>
+nnoremap <Leader>gph :Gpush<CR>
+nnoremap <Leader>gpl :Gpull<CR>
+nnoremap <Leader>gsh :Git sh<CR>
+nnoremap <Leader>gsn :Git sn<CR>
+nnoremap <Leader>gss :Git s<CR>
+nnoremap <Leader>gst :Gstatus<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>h :sp<CR>
+nnoremap <Leader>l :TlistToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>pU :PlugUpgrade<CR>
+nnoremap <Leader>pc :PlugClean<CR>
+nnoremap <Leader>pd :PlugDiff<CR>
+nnoremap <Leader>pi :PlugInstall<CR>
+nnoremap <Leader>ps :PlugStatus<CR>
+nnoremap <Leader>pu :PlugUpdate<CR>
+nnoremap <Leader>q :bd<CR>
+nnoremap <Leader>r :echo expand('%:p')<CR>
+nnoremap <Leader>s :w<CR>
+nnoremap <Leader>v :vsp<CR>
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap Q :q<CR>
+nnoremap [t :tabnext<CR>
+nnoremap ]t :tabprev<CR>
+vnoremap <Leader>s :sort<CR>
+
+" Visual settings
+let g:rehash256 = 1
+let g:solarized_termcolors= 256
+let g:solarized_termtrans = 1
+let g:solarized_degrade = 1
+let g:solarized_bold = 1
+let g:solarized_underline = 0
+let g:solarized_italic = 0
+let g:solarized_contrast = "high"
+let g:solarized_visibility= "high"
+let g:molokai_original = 1
+colorscheme molokai
+highlight Comment cterm=italic
+
+" Autpep8 settings
+let g:autopep8_indent_size=4
+let g:autopep8_disable_show_diff=1
+
+" emmet settings
+let g:user_emmet_leader_key = '<Leader>m'
+
+" CtrlP mappings
+let g:ConqueTerm_Color = 0
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_match_window = ''
+let g:ctrlp_max_files = ''
+let g:ctrlp_max_depth = 50
+let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''*.pyc'' --ignore ''.*.swp'' --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --ignore ''bower'' --ignore ''build'' --ignore ''__pycache__'' --ignore ''static'' --hidden -g ""'
+endif
+let start_dir = $PWD
+let g:ctrlp_cmd = 'CtrlP ' . start_dir
+let g:ctrlp_map = '<Leader>t'
+
+" YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_filetype_specific_completion_to_disable = { 'gitcommit': 1, 'cpp': 1 }
+let g:ycm_path_to_python_interpreter = '/Users/udit/.pyenv/shims/python'
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_server_use_vim_stdout = 1
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_server_python_interpreter = '/Users/udit/.pyenv/shims/python'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" VimWiki
+let g:vimwiki_list = [{'path': $PROJECTS . '/vimwiki'}, {'path_html': '/tmp/vimwiki_html'}]
+
+" Airline Mappings
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline_theme = 'solarized'
+let g:airline#extensions#tabline#enabled = 1
+
+" Tmuxline settings
+let g:tmuxline_preset = 'powerline'
+let g:airline#extensions#tmuxline#enabled = 0
+
+" UltiSnips settings
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" indentLine settings
+let g:indentLine_char = '|'
+
+" taglist settings
+let g:Tlist_WinWidth=35
+
+" NERDTree settings
+let NERDTreeIgnore = ['\.pyc$']
+
+" SimplyFold settings
+let g:SimpylFold_docstring_preview = 1
+
+" Markdown settings
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_folding_level = 6
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_new_list_item_indent = 2
+set conceallevel=2
+
+if exists('w:last_fdm')
+  unlet w:last_fdm
+endif
+
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd BufNewFile,BufRead *.html set filetype=htmldjango
+  autocmd BufWritePre * :%s/\s\+$//e
+  autocmd BufWritePost $VSCODE/* :silent !sync_scp.sh %:p
+  autocmd BufWritePost $VIMRC source $VIMRC | AirlineRefresh
+endif

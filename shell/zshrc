@@ -1,0 +1,53 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.config/oh-my-zsh"
+
+# oh-my-zsh configuration
+ZSH_THEME="powerlevel10k/powerlevel10k"
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+HISTFILE="$HOME/.cache/history"
+ZSH_COMPDUMP="$HOME/.cache/zcompdump"
+plugins=(git zsh-autosuggestions brew docker fzf httpie npm man osx pyenv python rsync tmux virtualenv xcode)
+source $ZSH/oh-my-zsh.sh
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# vi mode
+bindkey -v
+
+# Saner history configuration - up arrow shows last command in current shell
+setopt noincappendhistory
+setopt nosharehistory
+
+# zsh autocompletion map ^E to accept autocomplete
+bindkey -M viins '^E' end-of-line
+
+export DOTFILES="$HOME/.config/dotfiles"
+
+# source exports
+EXPORTS_PATH="$DOTFILES/shell/exports.sh"
+[[ ! -f $EXPORTS_PATH ]] || source $EXPORTS_PATH
+
+# source functions
+FUNCTIONS_PATH="$DOTFILES/shell/functions.sh"
+[[ ! -f $FUNCTIONS_PATH ]] || source $FUNCTIONS_PATH
+
+# import any user specific imports
+CUSTOM_CONF_PATH="$DOTFILES/shell/custom.sh"
+[[ ! -f $CUSTOM_CONF_PATH ]] || source $CUSTOM_CONF_PATH
+
+# Load p10k prompt configuration
+P10K_CONFIG="$DOTFILES/shell/p10k.zsh"
+[[ ! -f $P10K_CONFIG ]] || source $P10K_CONFIG
+
+eval "$(pyenv init -)"
