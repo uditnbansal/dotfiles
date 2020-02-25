@@ -269,6 +269,4 @@ endif
 if has("autocmd")
   autocmd BufNewFile,BufRead *.html set filetype=htmldjango
   autocmd BufWritePre * :%s/\s\+$//e
-  autocmd BufWritePost $DEV/* :silent !sync_scp %:p
-  autocmd BufWritePost $DOTFILES/vim/vimrc source $VIMRC | AirlineRefresh
 endif

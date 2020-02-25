@@ -142,6 +142,10 @@ function custom() {
       return
   fi
   cd ${NAV_ALIASES[$1]:-$1}
+      echo "Usage: ${FUNCNAME} <alias>"
+      return
+  fi
+  cd ${NAV_ALIASES[$1]:-$1}
 }
 
 function zz() {
@@ -151,10 +155,10 @@ function zz() {
       echo "Usage: ${FUNCNAME} <alias>"
       return
   fi
-  pushd ${NAV_ALIASES[$1]:-$1}
+  cd ${NAV_ALIASES[$1]:-$1}
 }
 
-function zp() {
+function _zp() {
   # navigation
   if [ $# -ne 1 ]
   then
@@ -166,27 +170,35 @@ function zp() {
 
 function c() {
   # compile
-  if [ $# -gt 2 ] || [ $# -eq 0 ]
+  if [ $# -gt 3 ] || [ $# -eq 0 ]
   then
-      echo "Usage: ${FUNCNAME} <bin-alias> <variant>"
+      echo "Usage: ${FUNCNAME} <bin-alias> <variant> <profile-arch>"
       return
   fi
   local bin_name=${BIN_ALIASES[$1]:-$1}
   local bin_repo=${BIN_TO_REPO[$bin_name]}
-  local variant=${2:-"default"}
-  local cmd="normake release $bin_name -s$bin_repo -p$variant"
-  echo "Running: $cmd"
-  $cmd
-}
-
-function cp() {
-  # build profile
-  if [ $# -ne 1 ]
+  local variant=${2}
+  local profile_arch=${3:-skl}
+  local cmd="normake release $bin_name -s$bin_repo"
+  if [ -n "$variant" ]
   then
-      echo "Usage: ${FUNCNAME} <bin-alias>"
-      return
+    if [[ $variant == "clang" ]]
+    then
+      export env_compiler=clang80
+      cmd="$cmd -b $DEV/_build.clang"
+    elif [[ $variant == "profiler" ]]
+    then
+      cmd="$cmd -p$variant -- -DTARGET_PMU_ARCH=$profile_arch"
+    else
+      cmd="$cmd -p$variant"
+    fi
   fi
-  c $1 profile
+  echo "Running: $cmd"
+  export TMPDIR="/spare/tmp/"
+  $cmd
+  unset TMPDIR
+  unset env_compiler
+  rm -rf /spare/tmp/preamble* 2>/dev/null
 }
 
 function d() {
@@ -197,4 +209,38 @@ function d() {
       return
   fi
   c $1 debug
+}
+
+function s() {
+  # ssh
+  if [ $# -ne 1 ]
+  then
+      echo "Usage: ${FUNCNAME} <dest>"
+      return
+  fi
+  ssh -t $1 'export SSH_USER="udit";/bin/bash'
+}
+
+function sn() {
+  # ssh as norviewer
+  if [ $# -ne 1 ]
+  then
+      echo "Usage: ${FUNCNAME} <dest>"
+      return
+  fi
+  ssh -t norviewer@$1 'export SSH_USER="udit";/bin/bash'
+}
+
+function iq() {
+  # install query
+  if [ $# -ne 1 ]
+  then
+    echo "Usage: ${FUNCNAME} <dest>"
+    return
+  fi
+  local query=$(basename $(readlink -e .))
+  local machine=$1
+  local cmd="InstallQuery.py $query --machine $machine --dir . --skip_mon_person_check"
+  echo "$cmd"
+  $cmd
 }

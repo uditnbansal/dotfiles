@@ -14,10 +14,8 @@ EXPORTS_PATH="$DOTFILES/shell/exports.sh"
 FUNCTIONS_PATH="$DOTFILES/shell/functions.sh"
 [[ ! -f $FUNCTIONS_PATH ]] || source $FUNCTIONS_PATH
 
-# source fzf
-FZF_PATH="$DOTFILES/shell/fzf.sh"
-[[ ! -f $FZF_PATH ]] || source $FZF_PATH
-
+# fzf configuration
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 set -o vi
 bind '\C-w:unix-filename-rubout'

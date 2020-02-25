@@ -53,3 +53,5 @@ P10K_CONFIG="$DOTFILES/shell/p10k.zsh"
 # Load lscolors - https://github.com/trapd00r/LS_COLORS
 LSCOLORS_CONFIG="$DOTFILES/shell/lscolors.sh"
 [[ ! -f $LSCOLORS_CONFIG ]] || source $LSCOLORS_CONFIG
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

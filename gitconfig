@@ -10,14 +10,15 @@
   bl = blame
   bn = rev-parse --abbrev-ref HEAD
   c = checkout
-  ch = checkout
+  ch = checkout --force HEAD
   cm = checkout master
   co = commit
   cp = cherry-pick
   ctag = describe --tags --abbrev=0
   d = diff
   dn = diff --name-only
-  l = log --oneline
+  l = log
+  ll = log --oneline
   ln = log --oneline -n
   lo = log
   pi = push origin HEAD:refs/for/ipc
@@ -30,10 +31,11 @@
   s = show --stat
   sh = show
   sn = show --pretty="format:" --name-only
+  sp = stash show -p
   st = status
 [user]
   name = Udit Bansal
-  email = uditnbansal@gmail.com
+  email = udit@tower-research.com
 [push]
   default = simple
 [credential]
