@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'Chiel92/vim-autoformat'
 Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'Konfekt/FastFold'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
@@ -27,7 +26,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
-Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 filetype plugin indent on
@@ -239,6 +237,7 @@ endif
 if has("autocmd")
   autocmd BufNewFile,BufRead *.html set filetype=htmldjango
   autocmd BufWritePre * :%s/\s\+$//e
-  autocmd BufWritePost $VSCODE/* :silent !sync_scp.sh %:p
+  " Uncomment below line for local machine setup
+  " autocmd BufWritePost $DEV/* :silent !sync_scp.sh %:p
   autocmd BufWritePost $VIMRC source $VIMRC | AirlineRefresh
 endif

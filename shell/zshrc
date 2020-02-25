@@ -12,7 +12,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HISTFILE="$HOME/.cache/history"
 ZSH_COMPDUMP="$HOME/.cache/zcompdump"
-plugins=(git docker fzf httpie npm man python rsync tmux virtualenv xcode)
+plugins=(tmux git zsh-autosuggestions brew docker httpie npm man python rsync virtualenv fzf)
 source $ZSH/oh-my-zsh.sh
 
 # Use vim keys in tab complete menu:
@@ -53,6 +53,3 @@ P10K_CONFIG="$DOTFILES/shell/p10k.zsh"
 # Load lscolors - https://github.com/trapd00r/LS_COLORS
 LSCOLORS_CONFIG="$DOTFILES/shell/lscolors.sh"
 [[ ! -f $LSCOLORS_CONFIG ]] || source $LSCOLORS_CONFIG
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

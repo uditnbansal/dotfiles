@@ -41,6 +41,27 @@ function spwd
   echo $output
 }
 
+function gbc
+{
+  cur_branch=`(git branch 2> /dev/null) | sed -n '/\* /s///p'`
+  if [[ $cur_branch == "" ]]
+  then
+    echo ""
+  else
+    echo "$cur_branch"
+  fi
+}
+
+function cmd_line_git_branch
+{
+  if [[ $(gbc) != "" ]]
+  then
+    echo "($(gbc)) "
+  else
+    echo ""
+  fi
+}
+
 function set_ps1
 {
   local        BLUE="\[\033[0;34m\]"
@@ -55,7 +76,7 @@ function set_ps1
   local   DARK_CYAN="\[\033[0;94m\]"
   local       CLEAR="\[\033[0m\]"
 
-  PS1="$CLEAR[ $RED\$(spwd) $GREEN\$(cmd_line_git_branch)$CLEAR]\$ "
+  PS1="$CLEAR$CYAN\$(date +%H:%M:%S)$CLEAR [ $RED\$(spwd) $GREEN\$(cmd_line_git_branch)$CLEAR]\$ "
   PS2='> '
   PS4='+ '
 }
@@ -92,6 +113,19 @@ function trash() {
   fi
 }
 
+function watchlogs() {
+  log_file=${1:-"logs/log"}
+  watch -n 1 "tail -n $(($(tput lines) - 3)) $log_file | cut -c -$(($(tput cols) - 1))"
+}
+
+function limit() {
+  num_lines=$(tput cols)
+  while read line
+  do
+    echo $line | cut -c -$num_lines
+  done
+}
+
 function z() {
   # navigation
   if [ $# -ne 1 ]
@@ -104,4 +138,63 @@ function z() {
 
 function custom() {
   ${EDITOR:-vim} $DOTFILES/shell/custom.sh
+      echo "Usage: ${FUNCNAME} <alias>"
+      return
+  fi
+  cd ${NAV_ALIASES[$1]:-.}
+}
+
+function zz() {
+  # navigation
+  if [ $# -ne 1 ]
+  then
+      echo "Usage: ${FUNCNAME} <alias>"
+      return
+  fi
+  pushd ${NAV_ALIASES[$1]:-.}
+}
+
+function zp() {
+  # navigation
+  if [ $# -ne 1 ]
+  then
+      echo "Usage: ${FUNCNAME} <alias>"
+      return
+  fi
+  echo ${NAV_ALIASES[$1]}
+}
+
+function c() {
+  # compile
+  if [ $# -gt 2 ] || [ $# -eq 0 ]
+  then
+      echo "Usage: ${FUNCNAME} <bin-alias> <variant>"
+      return
+  fi
+  local bin_name=${BIN_ALIASES[$1]:-$1}
+  local bin_repo=${BIN_TO_REPO[$bin_name]}
+  local variant=${2:-"default"}
+  local cmd="normake release $bin_name -s$bin_repo -p$variant"
+  echo "Running: $cmd"
+  $cmd
+}
+
+function cp() {
+  # build profile
+  if [ $# -ne 1 ]
+  then
+      echo "Usage: ${FUNCNAME} <bin-alias>"
+      return
+  fi
+  c $1 profile
+}
+
+function d() {
+  # build debug
+  if [ $# -ne 1 ]
+  then
+      echo "Usage: ${FUNCNAME} <bin-alias>"
+      return
+  fi
+  c $1 debug
 }

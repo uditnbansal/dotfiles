@@ -1,0 +1,39 @@
+# if not in interactive mode, return
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
+export DOTFILES="$HOME/.config/dotfiles"
+
+# source exports
+EXPORTS_PATH="$DOTFILES/shell/exports.sh"
+[[ ! -f $EXPORTS_PATH ]] || source $EXPORTS_PATH
+
+# source functions
+FUNCTIONS_PATH="$DOTFILES/shell/functions.sh"
+[[ ! -f $FUNCTIONS_PATH ]] || source $FUNCTIONS_PATH
+
+set -o vi
+bind '\C-w:unix-filename-rubout'
+complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null || complete -o default -o nospace -F _git g
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s dirspell
+shopt -s nocaseglob
+shopt -s nocasematch
+stty werase undef
+
+GIT_COMPLETION_PATH=$DOTFILES/shell/git-completion.bash
+[[ ! -f $GIT_COMPLETION_PATH ]] || source $GIT_COMPLETION_PATH
+
+DIRCOLORS_PATH=$DOTFILES/shell/dircolors
+eval `dircolors $DIRCOLORS_PATH`
+
+# set the prompt
+set_ps1
+
+# change default creation mode
+umask 007

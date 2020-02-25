@@ -1,6 +1,6 @@
 # Global navigation variables
 export CONFIG="$HOME/.config"
-export WORK="$HOME/Work"
+export WORK="${WORK:-$HOME}"
 export LEARN="$WORK/learn"
 export PROJECTS="$WORK/projects"
 export SCRATCH="$WORK/scratch"
@@ -11,7 +11,7 @@ export ACTIVATE="./env/bin/activate"
 export CTAGS_EXCLUDE="--exclude=static --exclude=.git --exclude=node_modules --exclude='*.bundle.js' --exclude='*.min.js' --exclude='*.pyc' --exclude=__pycache__"
 export CTAGS_LANG="--languages=HTML,Python,Sh,JavaScript"
 export EDITOR='vim'
-export INPUTRC="$DOTFILES/inputrc"
+export INPUTRC="$DOTFILES/shell/inputrc"
 export KEYTIMEOUT=1
 export LESSHISTFILE=/dev/null  # don't create a .lesshst file in $HOME
 export PATH=$PATH:/usr/local/sbin:$PROJECTS:$SCRIPTS
@@ -34,34 +34,33 @@ export LC_MEASUREMENT=$LANG
 export LC_IDENTIFICATION=$LANG
 
 # Shorthand navigation
-alias ..="cd .."
 alias dotfiles="cd $DOTFILES"
 alias scratch="cd $SCRATCH"
 alias scripts="cd $SCRIPTS"
 alias work="cd $WORK"
 alias projects="cd $PROJECTS"
 alias learn="cd $LEARN"
+alias custom="vim $DOTFILES/shell/custom.sh"
 
 # Shorthand
+alias ..='cd ..'
 alias activate='source $ACTIVATE'
-alias c="clear"
 alias g="git"
 alias gssh="gcloud compute ssh"
-alias ipy="ipython"
 alias ipy3="ipython3"
+alias ipy="ipython"
 alias l1="ls -1"
 alias l="ls -ltrG"
 alias la="ls -a"
 alias less='less -iSR'
 alias lr="ls -ltr"
-alias ls="ls -G --color=auto"
-alias p="python"
+alias ls="ls --color=auto -G"
 alias p3="python3"
+alias p="python"
 alias pod="popd"
 alias pud="pushd"
-alias readlink="greadlink"
 alias rm="rm -i"
-alias sc="sync_code.sh"
+alias sc="sync_code"
 alias sl="ls -ltra"
 alias t="tmux"
 alias v="vim"
