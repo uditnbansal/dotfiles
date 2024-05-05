@@ -91,3 +91,13 @@ function trash() {
     done
   fi
 }
+
+function z() {
+  # navigation
+  if [ $# -ne 1 ]
+  then
+    echo "Usage: ${FUNCNAME} <alias>"
+    return
+  fi
+  cd ${NAV_ALIASES[$1]:-$1}
+}
