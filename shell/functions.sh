@@ -101,3 +101,7 @@ function z() {
   fi
   cd ${NAV_ALIASES[$1]:-$1}
 }
+
+function custom() {
+  ${EDITOR:-vim} $DOTFILES/shell/custom.sh
+}
