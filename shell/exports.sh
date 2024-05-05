@@ -14,8 +14,6 @@ export EDITOR='vim'
 export INPUTRC="$DOTFILES/inputrc"
 export KEYTIMEOUT=1
 export LESSHISTFILE=/dev/null  # don't create a .lesshst file in $HOME
-export LSCOLORS=GxFxCxDxBxegedabagaced
-export LS_COLORS="ow=01;36:di=01;34:ex=01;32"
 export PATH=$PATH:/usr/local/sbin:$PROJECTS:$SCRIPTS
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export TERM="xterm-256color"
@@ -58,7 +56,7 @@ alias l="ls -ltrG"
 alias la="ls -a"
 alias less='less -iSR'
 alias lr="ls -ltr"
-alias ls="ls -G"
+alias ls="ls -G --color=auto"
 alias p="python"
 alias p3="python3"
 alias pod="popd"
