@@ -34,3 +34,5 @@
   email = uditnbansal@gmail.com
 [push]
   default = simple
+[credential]
+	helper = store

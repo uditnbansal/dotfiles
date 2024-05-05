@@ -17,8 +17,6 @@ export LESSHISTFILE=/dev/null  # don't create a .lesshst file in $HOME
 export PATH=$PATH:/usr/local/sbin:$PROJECTS:$SCRIPTS
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export TERM="xterm-256color"
-export VIMINIT='source $VIMRC'
-export VIMRC=$HOME/.vim/vimrc
 
 # Setting locale params
 export LANG='en_US.UTF-8'
