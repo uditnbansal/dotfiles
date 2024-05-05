@@ -96,7 +96,7 @@ function rebaseall() {
 }
 
 function gentags() {
-  local repo="${1:-${VSCODE}}"
+  local repo="${1:-${DEV}}"
   ctags -f $repo/tags ${CTAGS_EXCLUDE} ${CTAGS_LANG} -R $repo
 }
 
@@ -141,7 +141,7 @@ function custom() {
       echo "Usage: ${FUNCNAME} <alias>"
       return
   fi
-  cd ${NAV_ALIASES[$1]:-.}
+  cd ${NAV_ALIASES[$1]:-$1}
 }
 
 function zz() {
@@ -151,7 +151,7 @@ function zz() {
       echo "Usage: ${FUNCNAME} <alias>"
       return
   fi
-  pushd ${NAV_ALIASES[$1]:-.}
+  pushd ${NAV_ALIASES[$1]:-$1}
 }
 
 function zp() {

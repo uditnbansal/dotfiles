@@ -14,8 +14,9 @@ export EDITOR='vim'
 export INPUTRC="$DOTFILES/shell/inputrc"
 export KEYTIMEOUT=1
 export LESSHISTFILE=/dev/null  # don't create a .lesshst file in $HOME
-export PATH=$PATH:/usr/local/sbin:$PROJECTS:$SCRIPTS
+export PATH=$PATH:/usr/local/sbin:$PROJECTS:$SCRIPTS:$VEGARACER/scripts
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
+export RELEASE_DIR=$HOME
 export TERM="xterm-256color"
 
 # Setting locale params
@@ -40,7 +41,6 @@ alias scripts="cd $SCRIPTS"
 alias work="cd $WORK"
 alias projects="cd $PROJECTS"
 alias learn="cd $LEARN"
-alias custom="vim $DOTFILES/shell/custom.sh"
 
 # Shorthand
 alias ..='cd ..'
@@ -63,6 +63,8 @@ alias rm="rm -i"
 alias sc="sync_code"
 alias sl="ls -ltra"
 alias t="tmux"
-alias v="vim"
+alias v="nvim"
 alias venv="virtualenv"
+alias vi="nvim"
+alias vim="nvim"
 alias w="which"

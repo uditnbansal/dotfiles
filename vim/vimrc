@@ -2,25 +2,29 @@ call plug#begin('~/.vim/plugged')
 Plug 'Chiel92/vim-autoformat'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'SirVer/ultisnips'
 Plug 'bling/vim-airline'
+Plug 'derekwyatt/vim-fswitch'
 Plug 'edkolev/tmuxline.vim'
 Plug 'godlygeek/tabular'
 Plug 'henrik/vim-indexed-search'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'do': './install --bin'  }
+Plug 'junegunn/fzf.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mtth/scratch.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
-Plug 'rking/ag.vim'
+Plug 'sickill/vim-monokai'
 Plug 'tell-k/vim-autopep8'
 Plug 'tmhedberg/SimpylFold'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-abolish'
+if !has('nvim')
 Plug 'tpope/vim-fugitive'
+endif
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -35,6 +39,7 @@ syntax enable
 set autochdir " Change to the directory of the current file
 set background=dark
 set backspace=indent,eol,start
+set colorcolumn=100
 set cursorline
 set encoding=utf-8
 set expandtab
@@ -62,10 +67,18 @@ set t_ZR=[23m  " Correctly display italics
 set t_ut=  " This corrects the incorrect background colors while using inside tmux
 set tabpagemax=25
 set tabstop=2
-set tags+=$WORK/tags
+set tags+=$DEV/tags
+if !has('nvim')
 set viminfo+=n/tmp/viminfo
+endif
 set visualbell
+set wildignorecase
 set wildmenu
+
+" Trying to eliminate slowdown
+"set regexpengine=1
+"set ttyfast
+"set lazyredraw
 
 " User defined shortcuts
 let mapleader = ","
@@ -75,32 +88,45 @@ inoremap <C-e> <C-o>$
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 inoremap jj <Esc>
+nnoremap ; :
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <Leader>/ /\<\><Left><Left>
 nnoremap <Leader><Tab> :Scratch<CR>
+nnoremap <Leader>Fa :Autoformat<CR>
+nnoremap <Leader>Fc :%!clang-format --assume-filename=%:p -style=file<CR>
+nnoremap <Leader>Fj :%!python -m json.tool<CR>
+nnoremap <Leader>Fp ::call Autopep8()<CR>
 nnoremap <Leader>` :e $VIMRC<CR>
-nnoremap <Leader>aa :AgAdd<Space>
-nnoremap <Leader>ab :AgBuffer<Space>
-nnoremap <Leader>ag :Ag
 nnoremap <Leader>b<Space> :sp<CR>
 nnoremap <Leader>bb :b#<CR>
 nnoremap <Leader>bd :bd<CR>
 nnoremap <Leader>bf :bfirst<CR>
-nnoremap <Leader>bg :CtrlPBuffer<CR>
 nnoremap <Leader>bl :blast<CR>
 nnoremap <Leader>bn :bn<CR>
 nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>bs :buffers<CR>
+nnoremap <Leader>cc :cd $DEV<CR>
+nnoremap <Leader>ce :cd $DEV/ewap<CR>
+nnoremap <Leader>cn :cd $DEV/nor-code<CR>
+nnoremap <Leader>cv :cd $DEV/vegaracer<CR>
 nnoremap <Leader>cw :echo getcwd()<CR>
 nnoremap <Leader>dg :diffget<CR>
 nnoremap <Leader>e :e<Space>
-nnoremap <Leader>fa :Autoformat<CR>
-nnoremap <Leader>fc :%!clang-format -style=file<CR>
-nnoremap <Leader>fj :%!python -m json.tool<CR>
-nnoremap <Leader>fp ::call Autopep8()<CR>
+nnoremap <Leader>f/ :History/<CR>
+nnoremap <Leader>faa :AgIn $DEV
+nnoremap <Leader>fan :AgIn $NOR<Space>
+nnoremap <Leader>fav :AgIn $DEV/vegaracer<Space>
+nnoremap <Leader>fae :AgIn $DEV/ewap<Space>
+nnoremap <Leader>fb :CtrlPBuffer<CR>
+nnoremap <Leader>fc :Colors<CR>
+nnoremap <Leader>fg :Commits<CR>
+nnoremap <Leader>fl :Lines<CR>
+nnoremap <Leader>fs :FSHere<CR>
+nnoremap <Leader>ft :Tags<CR>
+nnoremap <Leader>fw :Windows<CR>
 nnoremap <Leader>ga :Git add %:p<CR><CR>
 nnoremap <Leader>gbb :Git b<CR>
 nnoremap <Leader>gbl :Gblame -w<CR>
@@ -130,13 +156,13 @@ nnoremap <Leader>pi :PlugInstall<CR>
 nnoremap <Leader>ps :PlugStatus<CR>
 nnoremap <Leader>pu :PlugUpdate<CR>
 nnoremap <Leader>q :bd<CR>
-nnoremap <Leader>r :echo expand('%:p')<CR>
+nnoremap <Leader>r :redraw<CR>:echo expand('%:p')<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader>v :vsp<CR>
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 nnoremap Q :q<CR>
-nnoremap [t :tabnext<CR>
-nnoremap ]t :tabprev<CR>
+nnoremap [t :tabprev<CR>
+nnoremap ]t :tabnext<CR>
 vnoremap <Leader>s :sort<CR>
 
 " Visual settings
@@ -149,7 +175,6 @@ let g:solarized_underline = 0
 let g:solarized_italic = 0
 let g:solarized_contrast = "high"
 let g:solarized_visibility= "high"
-let g:molokai_original = 1
 colorscheme molokai
 highlight Comment cterm=italic
 
@@ -174,7 +199,13 @@ if executable('ag')
 endif
 let start_dir = $PWD
 let g:ctrlp_cmd = 'CtrlP ' . start_dir
-let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_map = '<Leader>ff'
+
+" FZF
+function! s:ag_in(bang, ...)
+    call fzf#vim#ag(join(a:000[1:], ' '), fzf#vim#with_preview({'dir': a:1, 'options': '--delimiter : --nth 4..'}), a:bang)
+endfunction
+command! -bang -nargs=+ -complete=dir AgIn call s:ag_in(<bang>0, <f-args>)
 
 " YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 0
@@ -182,12 +213,12 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_filetype_specific_completion_to_disable = { 'gitcommit': 1, 'cpp': 1 }
-let g:ycm_path_to_python_interpreter = '/Users/udit/.pyenv/shims/python'
+"let g:ycm_path_to_python_interpreter = ''
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_server_use_vim_stdout = 1
 let g:ycm_show_diagnostics_ui = 1
-let g:ycm_server_python_interpreter = '/Users/udit/.pyenv/shims/python'
+"let g:ycm_server_python_interpreter = ''
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " VimWiki
@@ -198,6 +229,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline_theme = 'solarized'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_highlighting_cache = 1
 
 " Tmuxline settings
 let g:tmuxline_preset = 'powerline'
@@ -237,7 +269,6 @@ endif
 if has("autocmd")
   autocmd BufNewFile,BufRead *.html set filetype=htmldjango
   autocmd BufWritePre * :%s/\s\+$//e
-  " Uncomment below line for local machine setup
-  " autocmd BufWritePost $DEV/* :silent !sync_scp.sh %:p
-  autocmd BufWritePost $VIMRC source $VIMRC | AirlineRefresh
+  autocmd BufWritePost $DEV/* :silent !sync_scp %:p
+  autocmd BufWritePost $DOTFILES/vim/vimrc source $VIMRC | AirlineRefresh
 endif

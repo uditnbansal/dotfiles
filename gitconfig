@@ -13,12 +13,14 @@
   ch = checkout
   cm = checkout master
   co = commit
+  cp = cherry-pick
   ctag = describe --tags --abbrev=0
   d = diff
   dn = diff --name-only
   l = log --oneline
   ln = log --oneline -n
   lo = log
+  pi = push origin HEAD:refs/for/ipc
   pg = push origin HEAD:refs/for/master
   pl = pull
   ph = push
