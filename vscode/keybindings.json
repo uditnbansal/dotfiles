@@ -1,0 +1,73 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "shift+q",
+        "command": "workbench.action.closeEditorsAndGroup",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", q",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", v",
+        "command": "workbench.action.splitEditorRight",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", h",
+        "command": "workbench.action.splitEditorDown",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", f f",
+        "command": "workbench.action.quickOpen",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", f b",
+        "command": "workbench.action.openRecent",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", s",
+        "command": "workbench.action.files.save",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", w",
+        "command": "workbench.action.files.save",
+        "when": "editorTextFocus && neovim.mode == normal"
+    },
+    {
+        "key": ", f s",
+        "command": "clangd.switchheadersource",
+        "when": "editorTextFocus && neovim.mode == normal && resourceLangId == 'c' || editorTextFocus && neovim.mode == normal && resourceLangId == 'cpp' || editorTextFocus && neovim.mode == normal && resourceLangId == 'cuda-cpp' || editorTextFocus && neovim.mode == normal && resourceLangId == 'objective-c' || editorTextFocus && neovim.mode == normal && resourceLangId == 'objective-cpp'"
+    },
+    {
+        "key": ", g b l",
+        "command": "gitlens.toggleFileBlame",
+        "when": "editorTextFocus && neovim.mode == normal && config.gitlens.keymap == 'chorded' && resource in 'gitlens:tabs:blameable'"
+    }
+]

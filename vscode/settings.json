@@ -1,0 +1,51 @@
+{
+    "workbench.activityBar.location": "hidden",
+    "workbench.activityBar.orientation": "vertical",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.showTabs": "none",
+    "workbench.settings.applyToAllProfiles": [
+        
+    ],
+    "workbench.startupEditor": "none",
+    "workbench.tips.enabled": false,
+
+    "editor.fontVariations": false,
+    "editor.inlineSuggest.enabled": true,
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": false,
+    "editor.wordWrap": "off",
+    
+    "breadcrumbs.enabled": true,
+
+    "security.workspace.trust.untrustedFiles": "open",
+    "update.mode": "none",
+    "extensions.autoUpdate": false,
+    "extensions.autoCheckUpdates": false,
+    "window.zoomLevel": -1,
+    "remote.SSH.remotePlatform": {
+        "ns": "linux",
+        "ns22": "linux"
+    },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "C_Cpp.autocompleteAddParentheses": true,
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c17",
+    "vscode-neovim.compositeKeys": {
+        "jj": {
+            "command": "vscode-neovim.escape"
+        }
+    },
+    "remote.autoForwardPortsSource": "hybrid",
+    "zenMode.centerLayout": false,
+    "zenMode.hideLineNumbers": false,
+    "remote.SSH.connectTimeout": 1800,
+    "remote.SSH.serverInstallPath": {
+        "remote.SSH.serverInstallPath": "/spare/local/udit/.cursor-server"
+    },
+    "remote.SSH.serverShutdownTimeout": 1800,
+    "catppuccin.extraBordersEnabled": true,
+    "terminal.integrated.macOptionIsMeta": true
+}
