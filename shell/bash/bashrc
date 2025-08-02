@@ -2,8 +2,8 @@
 
 # Do nothing in non-interactive mode
 case $- in
-    *i*) ;;
-    *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # define dirs for dotfiles
@@ -23,10 +23,9 @@ CUSTOM_POST_EXPORT_PATH="${BASH_CONFIG_DIR}/custom_post_export.sh"
 CUSTOM_FUNCTIONS_PATH="${BASH_CONFIG_DIR}/custom_functions.sh"
 [ -f ${CUSTOM_FUNCTIONS_PATH} ] && source ${CUSTOM_FUNCTIONS_PATH}
 
-[ -f ${BASH_CONFIG_DIR}/functions.sh ] && source ${BASH_CONFIG_DIR}/functions.sh
+[ -f ${SHELL_CONFIG_DIR}/functions.sh ] && source ${SHELL_CONFIG_DIR}/functions.sh
 [ -f ${BASH_CONFIG_DIR}/options.sh ] && source ${BASH_CONFIG_DIR}/options.sh
 [ -f ${BASH_CONFIG_DIR}/tools.sh ] && source ${BASH_CONFIG_DIR}/tools.sh
 
 CUSTOM_END_PATH="${BASH_CONFIG_DIR}/custom_end.sh"
 [ -f ${CUSTOM_END_PATH} ] && source ${CUSTOM_END_PATH}
-
