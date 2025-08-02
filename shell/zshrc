@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # oh-my-zsh configuration
 ZSH_THEME="powerlevel10k/powerlevel10k"
 COMPLETION_WAITING_DOTS="true"
@@ -48,5 +50,3 @@ P10K_CONFIG="$DOTFILES/shell/p10k.zsh"
 # Load lscolors - https://github.com/trapd00r/LS_COLORS
 LSCOLORS_CONFIG="$DOTFILES/shell/lscolors.sh"
 [[ ! -f $LSCOLORS_CONFIG ]] || source $LSCOLORS_CONFIG
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
