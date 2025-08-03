@@ -14,8 +14,9 @@ export BASH_CONFIG_DIR=${DOTFILES}/shell/bash
 CUSTOM_START_PATH="${BASH_CONFIG_DIR}/custom_start.sh"
 [ -f ${CUSTOM_START_PATH} ] && source ${CUSTOM_START_PATH}
 
-[ -f ${BASH_CONFIG_DIR}/exports.sh ] && source ${BASH_CONFIG_DIR}/exports.sh
-[ -f ${BASH_CONFIG_DIR}/aliases.sh ] && source ${BASH_CONFIG_DIR}/aliases.sh
+[ -f ${SHELL_CONFIG_DIR}/exports.sh ] && source ${SHELL_CONFIG_DIR}/exports.sh
+[ -f ${SHELL_CONFIG_DIR}/aliases.sh ] && source ${SHELL_CONFIG_DIR}/aliases.sh
+[ -f ${HOME}/.fzf.bash ] && source ${HOME}/.fzf.bash
 
 CUSTOM_POST_EXPORT_PATH="${BASH_CONFIG_DIR}/custom_post_export.sh"
 [ -f ${CUSTOM_POST_EXPORT_PATH} ] && source ${CUSTOM_POST_EXPORT_PATH}

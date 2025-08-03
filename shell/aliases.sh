@@ -1,4 +1,12 @@
-# shorthand
+# Shorthand navigation
+alias dotfiles="cd $DOTFILES"
+alias scratch="cd $SCRATCH"
+alias scripts="cd $SCRIPTS"
+alias work="cd $WORK"
+alias projects="cd $PROJECTS"
+alias learn="cd $LEARN"
+
+# Shorthand
 alias ..="cd .."
 alias activate="source $ACTIVATE"
 alias g="git"

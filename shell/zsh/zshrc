@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+# Do nothing in non-interactive mode
+[[ $- != *i* ]] && return
+
+# define dirs for dotfiles
+export DOTFILES=${HOME}/.config/dotfiles
+export SHELL_CONFIG_DIR=${DOTFILES}/shell/
+export ZSH_CONFIG_DIR=${DOTFILES}/shell/zsh
+
+CUSTOM_START_PATH="${ZSH_CONFIG_DIR}/custom_start.sh"
+[ -f ${CUSTOM_START_PATH} ] && source ${CUSTOM_START_PATH}
+
+[ -f ${SHELL_CONFIG_DIR}/exports.sh ] && source ${SHELL_CONFIG_DIR}/exports.sh
+[ -f ${SHELL_CONFIG_DIR}/aliases.sh ] && source ${SHELL_CONFIG_DIR}/aliases.sh
+[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+[ -f ${ZSH_CONFIG_DIR}/p10k.zsh ] && source ${ZSH_CONFIG_DIR}/p10k.zsh
+[ -f ${ZSH_CONFIG_DIR}/omz.sh ] && source ${ZSH_CONFIG_DIR}/omz.sh
+
+CUSTOM_POST_EXPORT_PATH="${ZSH_CONFIG_DIR}/custom_post_export.sh"
+[ -f ${CUSTOM_POST_EXPORT_PATH} ] && source ${CUSTOM_POST_EXPORT_PATH}
+
+CUSTOM_FUNCTIONS_PATH="${ZSH_CONFIG_DIR}/custom_functions.sh"
+[ -f ${CUSTOM_FUNCTIONS_PATH} ] && source ${CUSTOM_FUNCTIONS_PATH}
+
+[ -f ${SHELL_CONFIG_DIR}/functions.sh ] && source ${SHELL_CONFIG_DIR}/functions.sh
+[ -f ${ZSH_CONFIG_DIR}/options.sh ] && source ${ZSH_CONFIG_DIR}/options.sh
+[ -f ${ZSH_CONFIG_DIR}/tools.sh ] && source ${ZSH_CONFIG_DIR}/tools.sh
+
+CUSTOM_END_PATH="${ZSH_CONFIG_DIR}/custom_end.sh"
+[ -f ${CUSTOM_END_PATH} ] && source ${CUSTOM_END_PATH}

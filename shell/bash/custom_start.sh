@@ -42,10 +42,12 @@ export GitReport=1
 export GIT_AUTO_FORMAT=false
 export TMPDIR=/spare/tmp/
 export RELEASE_DIR=$HOME
+export BIN_DIR=${HOME}/.local/bin
 
 # aliases
 alias li="/opt/trc/trading-platform/bin/listen.atom"
 alias listen.atom="/opt/trc/trading-platform/bin/listen.atom"
+alias ng="ngit"
 alias sc="export ENV_TO_USE=base; source ~/.bashrc"
 alias sm="export ENV_TO_USE=main; source ~/.bashrc"
 alias sup="sup -f ~/scripts/Supfile.yml"
