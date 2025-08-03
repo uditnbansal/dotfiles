@@ -41,3 +41,10 @@ source ${BASH_CONFIG_DIR}/fzf-git.sh
 #################### git-completion ####################
 
 [ -f ${BASH_CONFIG_DIR}/git-completion.sh ] && . ${BASH_CONFIG_DIR}/git-completion.sh
+
+
+#################### nvm ####################
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

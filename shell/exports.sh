@@ -7,7 +7,7 @@ export SCRATCH="$WORK/scratch"
 export SCRIPTS="$WORK/scripts"
 
 # Setting global variables required elsewhere
-export ACTIVATE="./env/bin/activate"
+export ACTIVATE=".venv/bin/activate"
 export EDITOR="nvim"
 export INPUTRC="${SHELL_CONFIG_DIR}/inputrc"
 export KEYTIMEOUT=1
