@@ -16,6 +16,7 @@ export LS_COLORS='*.7z=38;5;40:*.WARC=38;5;40:*.a=38;5;40:*.arj=38;5;40:*.br=38;
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export STARSHIP_CONFIG=${SHELL_CONFIG_DIR}/starship.toml
 export TERM="xterm-256color"
+export PATH=${PATH}:${HOME}/.local/bin
 
 # Setting locale params
 export LANG='en_US.UTF-8'
