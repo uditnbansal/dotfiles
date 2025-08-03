@@ -2,3 +2,4 @@
 shell/*/custom*.sh
 vim/plugged
 vim/viminfo
+nvim/lazy-lock.json
