@@ -4,3 +4,6 @@
 [submodule "shell/fzf"]
 	path = shell/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "tmux/tpm"]
+	path = tmux/tpm
+	url = https://github.com/tmux-plugins/tpm
