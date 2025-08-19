@@ -21,8 +21,6 @@
   ll = log --oneline
   ln = log --oneline -n
   lo = log
-  pi = push origin HEAD:refs/for/ipc
-  pg = push origin HEAD:refs/for/master
   pl = pull
   ph = push
   reb = rebase
@@ -35,7 +33,7 @@
   st = status
 [user]
   name = Udit Bansal
-  email = udit@tower-research.com
+  email = uditnbansal@gmail.com
 [push]
   default = simple
 [credential]
