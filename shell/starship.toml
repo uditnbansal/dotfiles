@@ -53,5 +53,4 @@ style = "purple"
 [hostname]
 ssh_only = false
 format = '[$hostname](bold white) '
-trim_at = '.tower-research.com'
 disabled = false
